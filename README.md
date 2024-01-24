@@ -11,7 +11,7 @@ One of the most common security incidents today is Business Email Compromise (BE
 
 <H2>Usage</H2>
 
-.\Rule-Reaper.ps1 <your-UPN> <impacted-email-address> [name-of-rule-to-delete] [/d|/D|/details]
+`.\Rule-Reaper.ps1 <your-UPN> <impacted-email-address> [name-of-rule-to-delete] [/d|/D|/details]`
 
 <H3>Parameters</H3>
 
