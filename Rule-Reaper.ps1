@@ -27,7 +27,7 @@ Write-Host @"
 #Checking ARGS
 if ($PSBoundParameters.ContainsKey('upn') -And $PSBoundParameters.ContainsKey('mailbox') ) {
 } else {
-    Write-Host "USAGE: .\Rule-Reaper.ps1 <your-UPN> <impacted-email-address> [name-of-rule-to-delete] [/d|/D|/details]" -ForegroundColor Red
+    Write-Host "USAGE: .\Rule-Reaper.ps1 <your-UPN> <impacted-email-address> [name-of-rule-to-delete] [/d|/D|/details]" -ForegroundColor Red -BackgroundColor Black
     Write-Host `n
     Write-Host "NOTE: If you just supply a rule name, Rule-Reaper will give you the details for the rule but will cut directly to removal of the rule from the mailbox. If you just want the details of the rule, also pass the -d, -D, or --details flag after your rule name." -ForegroundColor Yellow 
     exit
@@ -36,7 +36,13 @@ if ($PSBoundParameters.ContainsKey('upn') -And $PSBoundParameters.ContainsKey('m
 #Connect to EXO and gather info on mailbox rules for impacted user or print info and prompt for deletion if rule was provided
 connect-exchangeonline -userprincipalname $upn -ShowBanner:$false
 
-#Maybe check for connectivity and privileges before moving forward
+#Check for connectivity and privileges before moving forward
+try{get-inboxrule -mailbox $upn | out-null}
+catch{
+    Write-Warning -Message "Privilege error! Make sure you are elevated to Exchange Administrator or higher!"
+    exit
+}
+
 
 #Rule Provided - WITH details flag
 $acceptableFlags=@("/d","/D","/details","/Details","/DETAILS")
@@ -47,7 +53,7 @@ if ($PSBoundParameters.ContainsKey('rulename') -and $PSBoundParameters.ContainsK
     exit
 }
 
-#Rule Provided - WITHOUT details flag (default)
+    #Rule Provided - WITHOUT details flag (default)
 if ($PSBoundParameters.ContainsKey('rulename')){
     Write-Host "Rule Details: " -ForegroundColor Red
     (get-inboxrule -mailbox $mailbox -identity $rulename | Select-Object *).Description
@@ -61,8 +67,6 @@ if ($PSBoundParameters.ContainsKey('rulename')){
 } else{ #No Rule Provided - list rules
     Write-Host "Displaying names of email rules for mailbox:`n" -ForegroundColor Red
     (get-inboxrule -mailbox $mailbox).Name
-
-
 }
 
 
