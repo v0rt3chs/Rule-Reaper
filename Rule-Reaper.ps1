@@ -29,7 +29,7 @@ if ($PSBoundParameters.ContainsKey('upn') -And $PSBoundParameters.ContainsKey('m
 } else {
     Write-Host "USAGE: .\Rule-Reaper.ps1 <your-UPN> <impacted-email-address> [name-of-rule-to-delete] [/d|/D|/details]" -ForegroundColor Red -BackgroundColor Black
     Write-Host `n
-    Write-Host "NOTE: If you just supply a rule name, Rule-Reaper will give you the details for the rule but will cut directly to removal of the rule from the mailbox. If you just want the details of the rule, also pass the -d, -D, or --details flag after your rule name." -ForegroundColor Yellow 
+    Write-Host "NOTE: If you just supply a rule name, Rule-Reaper will give you the details for the rule but will cut directly to removal of the rule from the mailbox. If you just want the details of the rule, also pass the /d, /D, or /details flag after your rule name." -ForegroundColor Yellow 
     exit
 }
 
