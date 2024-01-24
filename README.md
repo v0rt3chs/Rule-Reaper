@@ -6,8 +6,8 @@ One of the most common security incidents today is Business Email Compromise (BE
 <H1>How to use Rule-Reaper</H1>
 
 <H2>Prerequisites</H2> - In order to use Rule-Reaper properly, you will need the following:
-    1. Exchange Online Powershell Installed (https://learn.microsoft.com/en-us/powershell/exchange/exchange-online-powershell-v2?view=exchange-ps#install-and-maintain-the-exchange-online-powershell-module)
-    2. At least Exchange Admin privileges in your O365 Tenant
+    <br>1. Exchange Online Powershell Installed (https://learn.microsoft.com/en-us/powershell/exchange/exchange-online-powershell-v2?view=exchange-ps#install-and-maintain-the-exchange-online-powershell-module)
+    <br>2. At least Exchange Admin privileges in your O365 Tenant
 
 <H2>Usage</H2>
 
@@ -36,3 +36,4 @@ Notes: If you do not know the name of the rule that was added, simply do not inc
 
 <br><br>
 Good luck, blue team! I hope this helps! :)
+<br>ASCII art is credit of https://patorjk.com/
